@@ -9,6 +9,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.cache.annotation.CacheRemoveAll;
+import javax.cache.annotation.CacheResult;
+import javax.cache.annotation.CacheValue;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +26,7 @@ public class BookController {
 
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	@GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
-	public Resource<Book> getBook(@PathVariable("id") Integer id) {
+	public Resource<Book> getBook(@PathVariable("id") @CacheValue Integer id) {
 
 		Book book = bookRepository.findById(id);
 		Resource<Book> resource = new Resource<Book>(book);
@@ -31,6 +34,7 @@ public class BookController {
 		return resource;
 	}
 
+	@CacheResult(cacheName = "all")
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	@GetMapping(produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
 	public List<Resource<Book>> getBooks() {
@@ -44,17 +48,20 @@ public class BookController {
 		return resources;
 	}
 
+	@CacheRemoveAll(cacheName = "all")
 	@PostMapping
 	public int doPost(@RequestBody Book book) {
 		int id = bookRepository.save(book);
 		return id;
 	}
 
+	@CacheRemoveAll(cacheName = "all")
 	@PutMapping(value = "/{id}")
 	public void puPut(@RequestParam("id") int id, @RequestBody Book book) {
 		bookRepository.save(book);
 	}
 
+	@CacheRemoveAll(cacheName = "all")
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Boolean> doDelete(@PathVariable("id") Integer id) {
 		return new ResponseEntity<Boolean>(bookRepository.delete(id),HttpStatus.OK);
