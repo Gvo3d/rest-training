@@ -24,6 +24,12 @@ public class BookController {
         return new ResponseEntity(book, HttpStatus.OK);
     }
 
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    @GetMapping(produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<Book> getBooks() {
+        return new ResponseEntity(bookRepository.findAll(), HttpStatus.OK);
+    }
+
     @PostMapping
     public int doPost(@RequestBody Book book) {
         int id = bookRepository.save(book);
