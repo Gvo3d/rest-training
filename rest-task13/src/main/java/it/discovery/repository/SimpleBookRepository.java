@@ -1,13 +1,12 @@
 package it.discovery.repository;
 
+import it.discovery.model.Book;
+import org.springframework.stereotype.Repository;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.springframework.stereotype.Repository;
-
-import it.discovery.model.Book;
 
 @Repository
 public class SimpleBookRepository implements BookRepository {
@@ -26,7 +25,7 @@ public class SimpleBookRepository implements BookRepository {
 	}
 
 	@Override
-	public void save(Book book) {
+	public int save(Book book) {
 		if (book.getId() == 0) {
 			counter++;
 			book.setId(counter);
@@ -36,6 +35,7 @@ public class SimpleBookRepository implements BookRepository {
 			books.put(book.getId(), book);
 			System.out.println("*** Book with id=" + book.getId() + " was updated");
 		}
+		return book.getId();
 	}
 
 	@Override
