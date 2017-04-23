@@ -50,7 +50,7 @@ public class BookControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "user", authorities = {"USER"})
+    @WithMockUser(username = "user", roles = {"USER"})
     public void saveBook() throws Exception {
         Book book = new Book();
         book.setAuthor("author");
