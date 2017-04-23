@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/rest-task13/rest-task13.iml" filepath="$PROJECT_DIR$/rest-task13/rest-task13.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rest-task19/rest-task19.iml" filepath="$PROJECT_DIR$/rest-task19/rest-task19.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rest-task3/rest-task3.iml" filepath="$PROJECT_DIR$/rest-task3/rest-task3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rest-task5/rest-task5.iml" filepath="$PROJECT_DIR$/rest-task5/rest-task5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rest-task9/rest-task9.iml" filepath="$PROJECT_DIR$/rest-task9/rest-task9.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rest-training.iml" filepath="$PROJECT_DIR$/rest-training.iml" />
+    </modules>
+  </component>
+</project>

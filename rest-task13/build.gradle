@@ -1,0 +1,7 @@
+dependencies {
+    compile 'com.jayway.jsonpath:json-path:2.2.0'
+    compile("org.springframework.boot:spring-boot-starter-hateoas:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}")
+    testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+    testCompile 'junit:junit:4.12'
+}
