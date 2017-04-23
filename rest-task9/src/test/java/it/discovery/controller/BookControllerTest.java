@@ -26,6 +26,7 @@ import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -53,12 +54,15 @@ public class BookControllerTest {
     public void saveBook() throws Exception {
         Book book = new Book();
         book.setAuthor("author");
-        mockMvc.perform(post("/book").contentType(MediaType.APPLICATION_JSON_UTF8_VALUE).content(MAPPER.writeValueAsString(book))).andExpect(status().isOk());
+        mockMvc.perform(post("/book").contentType(MediaType.APPLICATION_JSON_UTF8_VALUE).content(MAPPER.writeValueAsString(book))).andExpect(status().isOk()).andExpect(jsonPath("$", Matchers.is(0)));
     }
 
     @Test
     public void getBook() throws Exception{
-        mockMvc.perform(get("/book/1")).andExpect(status().isOk());
+        Book book = new Book();
+        book.setName("bookname");
+        given(bookRepository.findById(1)).willReturn(book);
+        mockMvc.perform(get("/book/1")).andExpect(status().isOk()).andExpect(MockMvcResultMatchers.jsonPath("$.name", Matchers.is("bookname")));
     }
 
     @Test
