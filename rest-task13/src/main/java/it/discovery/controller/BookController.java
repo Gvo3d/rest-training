@@ -24,6 +24,7 @@ public class BookController {
 	@Autowired
 	private BookRepository bookRepository;
 
+	@CacheRemoveAll(cacheName = "all")
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	@GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
 	public Resource<Book> getBook(@PathVariable("id") @CacheValue Integer id) {
@@ -37,6 +38,7 @@ public class BookController {
 	@CacheResult(cacheName = "all")
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	@GetMapping(produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
+//	@Secured("ROLE_ADMIN")
 	public List<Resource<Book>> getBooks() {
 		List<Book> books = bookRepository.findAll();
 		List<Resource<Book>> resources = new ArrayList<>();
@@ -45,7 +47,9 @@ public class BookController {
 			resource.add(linkTo(methodOn(BookController.class).getBook(book.getId())).withSelfRel());
 			resources.add(resource);
 		}
-		return resources;
+		if (null!=resources){
+			return resources;
+		} else return null;
 	}
 
 	@CacheRemoveAll(cacheName = "all")

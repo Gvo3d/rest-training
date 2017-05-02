@@ -3,7 +3,7 @@ dependencies {
     ['context', 'webmvc'].each { compile("org.springframework:spring-${it}:${springVersion}") }
 
     compile 'com.jayway.jsonpath:json-path:2.2.0'
-    compile("org.springframework.security.oauth:spring-security-oauth2:2.1.0.RELEASE") { exclude module: 'spring-security-core' }
+    compile("org.springframework.security.it.discovery.security.oauth:spring-security-oauth2:2.1.0.RELEASE") { exclude module: 'spring-security-core' }
     compile("org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}")
     compile 'org.webjars:jquery:2.1.1'
     compile 'org.webjars:bootstrap:3.3.7-1'

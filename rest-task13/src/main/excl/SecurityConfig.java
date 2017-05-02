@@ -1,4 +1,4 @@
-package it.discovery.security;
+package excl;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -25,5 +25,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         http.httpBasic();
         http.csrf().disable();
     }
-
 }
